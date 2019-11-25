@@ -46,10 +46,11 @@
                     checkDate: [{
                         type: 'array',
                         required:true,
+                        message:'请选择时间范围',
                         fields: {
                             //tpye类型试情况而定,所以如果返回的是date就改成date
-                            0: {required: true, message: '请选择年度范围', trigger: 'blur'},
-                            1: {required: true, message: '请选择年度范围', trigger: 'blur'}
+                            0: {required: true, message: '请选择时间范围', trigger: 'blur'},
+                            1: {required: true, message: '请选择时间范围', trigger: 'blur'}
                         }
                     }],
                 },
@@ -82,6 +83,7 @@
                         }else {
                             this.$Message.success('Success!');
                             const result = await reqFreeRooms(this.formValidate.checkDate[0],this.formValidate.checkDate[1],this)
+                            this.$emit('freeRooms',result.data)
                             console.log(result)
                         }
                     } else {
