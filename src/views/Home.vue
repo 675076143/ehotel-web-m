@@ -1,7 +1,7 @@
 <template>
   <div class="home" >
       <search-free-room @freeRooms="getFreeRooms"></search-free-room>
-      <free-rooms :freeRooms="freeRooms"></free-rooms>
+      <free-rooms :freeRooms="freeRooms" :checkInDate="checkInDate" :checkOutDate="checkOutDate" :check-dates="checkDates"></free-rooms>
   </div>
 </template>
 
@@ -13,7 +13,10 @@ export default {
   name: 'home',
   data(){
     return{
-        freeRooms:[]
+        freeRooms:[],
+        checkInDate:"",
+        checkOutDate: "",
+        checkDates:1,
     }
   },
   components: {
@@ -21,8 +24,11 @@ export default {
       FreeRooms
   },
   methods:{
-      getFreeRooms(freeRooms){
-          this.freeRooms = freeRooms
+      getFreeRooms(data){
+          this.freeRooms = data.freeRooms
+          this.checkInDate = data.checkInDate
+          this.checkOutDate = data.checkOutDate
+          this.checkDates = data.checkDates
       }
   }
 }

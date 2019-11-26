@@ -81,10 +81,16 @@
                         if(this.checkDates===0){
                             alert("入住时长至少为一天！")
                         }else {
-                            this.$Message.success('Success!');
                             const result = await reqFreeRooms(this.formValidate.checkDate[0],this.formValidate.checkDate[1],this)
-                            this.$emit('freeRooms',result.data)
-                            console.log(result)
+                            const emitData = {
+                                freeRooms:result.data,
+                                checkInDate:this.formValidate.checkDate[0],
+                                checkOutDate:this.formValidate.checkDate[1],
+                                checkDates:this.checkDates
+                            }
+                            this.$emit('freeRooms',emitData)
+                            console.log(emitData)
+                            this.$Message.success('Success!');
                         }
                     } else {
                         this.$Message.error('Fail!');
